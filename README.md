@@ -2,6 +2,8 @@
 
 A full-stack, plug-and-play AI chatbot widget for businesses — built with **React + Tailwind CSS** (frontend) and **Node.js + Express + Groq** (backend).
 
+### 🌍 [Live Demo →](https://ai-chatbot-widget-nine.vercel.app)
+
 ---
 
 ## ✨ Features
@@ -154,22 +156,42 @@ ai-chatbot-widget/
 
 ## 🛠️ Environment Variables
 
+### Backend (Render)
+
 | Variable | Required | Description |
 |---|---|---|
 | `GROQ_API_KEY` | ✅ Yes | Your Groq API key |
 | `PORT` | Optional | Backend port (default: `5000`) |
+| `CORS_ORIGIN` | Optional | Allowed frontend origin (default: `*`) |
+
+### Frontend (Vercel)
+
+| Variable | Required | Description |
+|---|---|---|
+| `VITE_API_URL` | ✅ Yes | Full URL of the deployed backend |
 
 ---
 
-## 🌐 Deploying to Production
+## 🌐 Live Deployment
 
-### Backend (e.g. Railway, Render, Fly.io)
-1. Set `GROQ_API_KEY` as an environment variable
-2. Set start command to `node server.js`
+This project is deployed for free using:
 
-### Frontend (e.g. Vercel, Netlify)
-1. Update the `proxy` in `vite.config.js` to point to your deployed backend URL
-2. Or set `VITE_API_URL` and update `axios` base URL in `useChat.js`
+| Service | Platform | URL |
+|---|---|---|
+| Frontend | Vercel | [ai-chatbot-widget-nine.vercel.app](https://ai-chatbot-widget-nine.vercel.app) |
+| Backend | Render | [ai-chatbot-widget-xvzf.onrender.com](https://ai-chatbot-widget-xvzf.onrender.com) |
+
+### Deploy Your Own
+
+**Backend → [Render](https://render.com)** (Free Tier)
+1. Import this repo → set **Root Directory** to `backend`
+2. **Build Command:** `npm install` · **Start Command:** `node server.js`
+3. Add env vars: `GROQ_API_KEY`, `CORS_ORIGIN` (your Vercel URL)
+
+**Frontend → [Vercel](https://vercel.com)** (Free Tier)
+1. Import this repo → set **Root Directory** to `frontend`
+2. Add env var: `VITE_API_URL` (your Render backend URL)
+3. Deploy — done!
 
 ---
 
