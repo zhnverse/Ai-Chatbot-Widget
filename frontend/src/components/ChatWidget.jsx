@@ -5,6 +5,9 @@ import TypingIndicator from "./TypingIndicator";
 import ChatInput from "./ChatInput";
 import axios from "axios";
 
+// In production (Vercel), use the deployed Render backend URL.
+const API_BASE = import.meta.env.VITE_API_URL ?? "";
+
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [config, setConfig] = useState({
@@ -17,7 +20,7 @@ export default function ChatWidget() {
 
   // Fetch business config from backend
   useEffect(() => {
-    axios.get("/api/config").then(({ data }) => {
+    axios.get(`${API_BASE}/api/config`).then(({ data }) => {
       setConfig(data);
       document.documentElement.style.setProperty("--primary-color", data.primaryColor);
     }).catch(() => {});

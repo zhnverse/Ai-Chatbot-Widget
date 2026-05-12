@@ -8,7 +8,14 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // ─── Middleware ───────────────────────────────────────────────────────────────
-app.use(cors());
+// CORS_ORIGIN = your Vercel frontend URL in production (set this on Render)
+// Leave unset for local dev (allows all origins)
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN || "*",
+    methods: ["GET", "POST"],
+  })
+);
 app.use(express.json());
 
 // ─── Groq Client ─────────────────────────────────────────────────────────────

@@ -1,6 +1,10 @@
 import { useState, useCallback } from "react";
 import axios from "axios";
 
+// In production (Vercel), use the deployed Render backend URL.
+// In local dev, Vite proxies /api to localhost:5001, so no env var needed.
+const API_BASE = import.meta.env.VITE_API_URL ?? "";
+
 export function useChat() {
   const [messages, setMessages] = useState([
     {
@@ -26,7 +30,7 @@ export function useChat() {
         .filter((m) => m.role === "user" || (m.role === "assistant" && m.id !== messages[0].id))
         .map(({ role, content }) => ({ role, content }));
 
-      const { data } = await axios.post("/api/chat", { messages: history });
+      const { data } = await axios.post(`${API_BASE}/api/chat`, { messages: history });
 
       const assistantMsg = {
         id: Date.now() + 1,
